@@ -1,0 +1,28 @@
+нахождение длинны цикла, без начального хвоста
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Kata
+{
+  public static int getLoopSize(LoopDetector.Node startNode)
+  {
+    var newSet = new HashSet<LoopDetector.Node>();
+    var node = startNode;
+    while(!newSet.Contains(node))
+    {
+      newSet.Add(node);
+      node = node.next;
+    }
+    var startLoop=0;
+    foreach(var n in newSet)
+    {
+      if(n==node)
+        break;
+      startLoop++;
+    }
+    return newSet.Count-startLoop;
+  }
+}
